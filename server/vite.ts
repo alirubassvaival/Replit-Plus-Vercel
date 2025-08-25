@@ -23,7 +23,11 @@ export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true as true,
+    allowedHosts: [
+      "4ddf7507-6c92-4e64-bd12-afa507a54943-00-wepc80i7z6sb.picard.replit.dev", // ✅ allow ANY subdomain under replit.dev
+      "localhost",
+      "127.0.0.1",
+    ],
   };
 
   const vite = await createViteServer({
