@@ -20,11 +20,10 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const serverOptions: ServerOptions = {
+  const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    // simplest: remove this entirely, or keep explicit hosts as strings
-    allowedHosts: ["localhost", "127.0.0.1", ".repl.co", ".replit.dev", ".vercel.app"],
+    allowedHosts: ["localhost", "127.0.0.1",".repl.co", ".replit.dev", ".vercel.app",],
   };
 
   const vite = await createViteServer({
