@@ -20,15 +20,13 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const serverOptions = {
-    middlewareMode: true,
-    hmr: { server },
-    allowedHosts: [
-      "4ddf7507-6c92-4e64-bd12-afa507a54943-00-wepc80i7z6sb.picard.replit.dev", // ✅ allow ANY subdomain under replit.dev
-      "localhost",
-      "127.0.0.1",
-    ],
-  };
+  const serverOptions: ServerOptions = {
+  middlewareMode: true,
+  hmr: { server },
+  ...(process.env.NODE_ENV === "development"
+    ? { allowedHosts: ["localhost", "127.0.0.1", ".repl.co", ".replit.dev"] }
+    : {}),
+};
 
   const vite = await createViteServer({
     ...viteConfig,
