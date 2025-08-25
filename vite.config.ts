@@ -33,10 +33,12 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
-    allowedHosts: [
-      /^.*\.replit\.dev$/,  // ✅ allow ANY subdomain under replit.dev
+   allowedHosts: [
       "localhost",
       "127.0.0.1",
+      ".repl.co",
+      ".replit.dev",
+      ".vercel.app",
     ],
     host: true, // ✅ bind to all interfaces
     port: 5000, // match your `.replit` (waits for port 5000)
