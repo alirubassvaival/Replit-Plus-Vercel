@@ -21,12 +21,11 @@ export function log(message: string, source = "express") {
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions: ServerOptions = {
-  middlewareMode: true,
-  hmr: { server },
-  ...(process.env.NODE_ENV === "development"
-    ? { allowedHosts: ["localhost", "127.0.0.1", ".repl.co", ".replit.dev"] }
-    : {}),
-};
+    middlewareMode: true,
+    hmr: { server },
+    // simplest: remove this entirely, or keep explicit hosts as strings
+    allowedHosts: ["localhost", "127.0.0.1", ".repl.co", ".replit.dev", ".vercel.app"],
+  };
 
   const vite = await createViteServer({
     ...viteConfig,
